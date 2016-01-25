@@ -1,0 +1,16 @@
+{
+    "contents" : "# Andrew Fairless, June 2010\n# modified April 2015 for posting onto Github\n# This script constructs the graph for Figure 4 of Fairless et al 2011\n# Fairless et al 2011, doi: 10.1002/ar.21318, PMID: 21905241, PMCID: PMC3176979\n\n\nicctable = read.table(\"figure4.txt\", header = FALSE, sep = \"\\t\")\niccsrownames = icctable[ ,2]       # names for each column of bar graph\niccs = icctable[ ,3]               # intraclass correlation coefficient (ICC) point estimate\nlcis = icctable[ ,4]               # ICC lower confidence interval\nucis = icctable[ ,5]               # ICC upper confidence interval\nbarcolors = icctable[ ,6]          # colors for each column of bar graph\niccsspace = icctable[ ,7]          # space between each column of bar graph\nleg = read.table(\"legend.txt\", header = FALSE, sep = \"\\t\")  # graph legend\ntkmks = read.table(\"tickmarks.txt\", header = FALSE)         # tickmarks for y axis\ntkmks = tkmks[ ,1]\n\ninstall.packages(\"gplots\", dependencies = TRUE)   # install package if not already installed\n\nlibrary(gplots)\npalette(\"default\")                 # use default color scheme\n\n# plot bar graph\npng(file = \"figure4.png\", width = 640, height = 512)\nbarplot2(iccs, plot.ci = TRUE, ci.l = lcis, ci.u = ucis, ylim = c(-0.1, 1), \n         col = barcolors, space = iccsspace, \n         ylab = \"Intraclass Correlation Coefficient (A,1)\", \n         names.arg = iccsrownames, cex.names = 1, las = 2, yaxt = \"n\")\nabline(h = 0)                      # x axis\naxis(2, at = tkmks, las = 2)       # y axis\ndev.off()\n\n# plot graph legend\npng(file = \"figure4legend.png\", width = 300, height = 300)     \nplot(NULL)\nlegend(0, 0.5, leg[ ,2], fill = leg[ ,1], cex = 1)\ndev.off()\t\n\n# bar graph and graph legend to be subsequently combined \n# into one figure with photo-editing software\n",
+    "created" : 1428167291167.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2442267739",
+    "id" : "974E36EB",
+    "lastKnownWriteTime" : 1428167138,
+    "path" : "/media/zh/My Passport/backup/2015 code share/Fairless et al 2011 Fig 4/to share/figure4.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

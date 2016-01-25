@@ -1,0 +1,5 @@
+2	Manual realtime 
+5	Manual correctable
+7	Automated cylinder sniffing 
+3	Automated cylinder proximity 
+
